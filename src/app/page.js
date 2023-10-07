@@ -47,8 +47,8 @@ export default function Home() {
               </svg>
 
               <span
-                onclick={() =>
-                  signInWithPopup().then(() => router.push("/chat"))
+                onClick={async () =>
+                  await signInWithPopup().then(() => router.push("/chat"))
                 }
                 className="text-sm font-semibold leading-6 text-gray-900"
               >
