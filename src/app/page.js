@@ -17,7 +17,7 @@ export default function Home() {
             </div>
             <button
               type="button"
-              className="flex w-full items-center justify-center gap-3 rounded-md border shadow-md px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D9BF0]"
+              className="bg-white mt-6 flex w-full items-center justify-center gap-3 rounded-md border shadow-md px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D9BF0]"
             >
               <svg
                 className="h-5 w-5"
