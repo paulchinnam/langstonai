@@ -84,7 +84,7 @@ export default function Chat() {
                   <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="border w-full border-gray-700 rounded-md px-4 py-4 bg-gray-600"
+                    className="border w-full border-gray-700 rounded-md px-4 py-4 bg-gray-600 text-white"
                     placeholder="enter your message"
                   />
                   <button
