@@ -29,30 +29,9 @@ export default function Chat() {
           Word library
         </aside>
         <div className="flex flex-col justify-center h-screen py-10 px-6 w-4/5">
-          {/* <h1 className="text-2xl font-serif pb-6 text-white text-right">
-            Talk to Langston
-          </h1> */}
           {user && (
             <div className="flex flex-col justify-between h-full w-full border border-gray-800 bg-gray-800 rounded-md p-4 shadow-sm">
-              {/* <div className="flex flex-col-reverse overflow-auto h-full w-full">
-              {messages &&
-                messages.map((message, i) => {
-                  return (
-                    <div
-                      key={i}
-                      className={`w-1/3 ${
-                        message.sender == "user"
-                          ? "justify-end"
-                          : "justify-start"
-                      }`}
-                    >
-                      <h1 className="font-bold text-lg"> {message.sender}</h1>
-                      <p className=" text-md">{message.text}</p>
-                    </div>
-                  );
-                })}
-            </div> */}
-              <div className="flex flex-col-reverse overflow-auto h-full w-full space-y-2">
+              <div className="flex flex-col-reverse overflow-auto h-full w-full space-y-4">
                 {messages &&
                   messages.map((message, i) => {
                     return (
@@ -65,7 +44,7 @@ export default function Chat() {
                         } w-full px-4`}
                       >
                         <div
-                          className={`border p-2 rounded-lg shadow-sm text-white border-gray-700 bg-gray-500 w-1/3 ${
+                          className={`border p-4 rounded-lg shadow-sm text-white border-gray-700 bg-gray-700 w-1/3 ${
                             message.sender === "user" ? "ml-auto" : "mr-auto"
                           }`}
                         >
