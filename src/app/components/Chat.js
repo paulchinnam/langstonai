@@ -31,7 +31,7 @@ export default function Chat() {
         <div className="flex flex-col justify-center h-screen py-10 px-6 w-4/5">
           {user && (
             <div className="flex flex-col justify-between h-full w-full border border-gray-800 bg-gray-800 rounded-md p-4 shadow-sm">
-              <div className="flex flex-col-reverse overflow-auto h-full w-full space-y-4">
+              <div className="flex flex-col-reverse overflow-auto h-full w-full">
                 {messages &&
                   messages.map((message, i) => {
                     return (
@@ -41,7 +41,7 @@ export default function Chat() {
                           message.sender === "user"
                             ? "justify-end"
                             : "justify-start"
-                        } w-full px-4`}
+                        } w-full px-4 my-1.5`}
                       >
                         <div
                           className={`border p-4 rounded-lg shadow-sm text-white border-gray-700 bg-gray-700 w-1/3 ${
