@@ -59,7 +59,7 @@ exports.generateMessageResponse = onDocumentCreated(
       const userRef = db.collection("users").doc(userId);
       const messagesRef = userRef
         .collection("sessions")
-        .doc("sessionId")
+        .doc(sessionId)
         .collection("messages");
 
       const userMessageSnap = event.data;
@@ -70,19 +70,31 @@ exports.generateMessageResponse = onDocumentCreated(
       const user = userSnap.data();
       const words = { user };
 
-      let wordsArray = [];
+      let aggregateWords = "";
       for (let word of words) {
-        wordsArray.push(word.word);
+        aggregateWords = aggregateWords + "," + word.word;
       }
 
+      let wordArrayString = "[" + aggregateWords + "]";
+
+      //prompt
+
+      let basePrompt =
+        "You are a role playing language learning assistant. You must play the character role provided to you in the scenario. You must respond to the user's message in a way that furthers the conversation and allows the user opportunity to respond back to you. DO NOT repeat the words the user says back to you. YOU MUST ONLY use words that are contained within the word list array provided to you. DO NOT use additional words  not contained within the word list array to formulate your responses. If available make additional sentences with the given words and ask questions as well to continue the conversation.";
+
       //generate chatgpt response
-      const prompt = `prompt goes here`;
+      const prompt = basePrompt + wordArrayString;
       const gptResponse = await exports.fetchOpenAIResponse(
         prompt,
         userMessage
       );
 
-      return gptResponse;
+      const messageToAdd = {
+        text: gptResponse,
+        sender: "gpt",
+      };
+
+      await messagesRef.add(messageToAdd);
 
       // messagesRef.add(someResponse)
     } catch (err) {
