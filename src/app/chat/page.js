@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "../hooks/useFirebase";
+import Chat from "../components/Chat";
 
 const user = {
   name: "Tom Cook",
@@ -215,7 +216,7 @@ export default function Page() {
           </header>
           <main>
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-              {/* Your content */}
+              <Chat />
             </div>
           </main>
         </div>
