@@ -1,9 +1,13 @@
 "use client";
 import { Fragment, useState } from "react";
+import { useAuth } from "../hooks/useFirebase";
+
 
 export default function Example() {
+  const {signOut} = useAuth()
   return (
     <>
+    <button onClick={()=>signOut} className="px-3 py-2 bg-blue-300 rounded-full">Sign Out</button>
       <main className="bg-gray-700 h-screen flex items-center">
         <div className="mx-auto space-y-6 w-96">
           <h1 className="font-serif text-white text-xl text-center">

@@ -32,7 +32,7 @@ export default function Chat() {
           {user && (
             <div className="flex flex-col justify-between h-full w-full border border-gray-800 bg-gray-800 rounded-md p-4 shadow-sm">
               <div className="flex flex-col-reverse overflow-auto h-full w-full space-y-4">
-                {messages &&
+                {messages && 
                   messages.map((message, i) => {
                     return (
                       <div
