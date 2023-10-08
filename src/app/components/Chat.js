@@ -25,7 +25,7 @@ export default function Chat() {
   return (
     <>
       <div className="flex bg-gray-700">
-        <aside className="w-1/5 border-l border-gray-800 p-6 bg-gray-800 text-white my-10 ml-4 rounded-md">
+        <aside className="w-1/5 p-6 bg-gray-800 text-white my-10 ml-4 rounded-md">
           Word library
         </aside>
         <div className="flex flex-col justify-center h-screen py-10 px-6 w-4/5">

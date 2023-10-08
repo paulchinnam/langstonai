@@ -14,6 +14,43 @@ import OpenAI from "openai";
 initializeApp();
 const db = getFirestore();
 
+exports.fetchOpenAIResponse = async (prompt, userMessage) => {
+  const openai = new OpenAI({
+    apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true,
+  });
+
+  try {
+    const apiResponse = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content: prompt,
+        },
+        {
+          role: "user",
+          content: userMessage,
+        },
+      ],
+      temperature: 0,
+      max_tokens: 256,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+    });
+
+    let assistantMessage = apiResponse.choices[0].message.content;
+    const parsed = JSON.parse(assistantMessage);
+    console.log(assistantMessage);
+    console.log(parsed);
+
+    return parsed;
+  } catch (error) {
+    console.error("Error fetching OpenAI response:", error);
+  }
+};
+
 exports.generateMessageResponse = onDocumentCreated(
   "users/{userId}/sessions/{sessionId}/messages/{messageId}",
   async (event) => {
@@ -39,6 +76,13 @@ exports.generateMessageResponse = onDocumentCreated(
       }
 
       //generate chatgpt response
+      const prompt = `prompt goes here`;
+      const gptResponse = await exports.fetchOpenAIResponse(
+        prompt,
+        userMessage
+      );
+
+      return gptResponse;
 
       // messagesRef.add(someResponse)
     } catch (err) {
@@ -46,39 +90,3 @@ exports.generateMessageResponse = onDocumentCreated(
     }
   }
 );
-
-exports.fetchOpenAIResponse = async () => {
-  const openai = new OpenAI({
-    apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true,
-  });
-
-  try {
-    const apiResponse = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: `prompt goes here`,
-        },
-        {
-          role: "user",
-          content: text,
-        },
-      ],
-      temperature: 0,
-      max_tokens: 256,
-      top_p: 1,
-      frequency_penalty: 0,
-      presence_penalty: 0,
-    });
-
-    let assistantMessage = apiResponse.choices[0].message.content;
-    const parsed = JSON.parse(assistantMessage);
-    console.log(assistantMessage);
-    console.log(parsed);
-    setResponse(parsed);
-  } catch (error) {
-    console.error("Error fetching OpenAI response:", error);
-  }
-};
