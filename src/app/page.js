@@ -48,7 +48,7 @@ export default function Home() {
 
               <span
                 onClick={async () =>
-                  await signInWithPopup().then(() => router.push("/chat"))
+                  await signInWithPopup().then(() => router.push("/new"))
                 }
                 className="text-sm font-semibold leading-6 text-gray-900"
               >
